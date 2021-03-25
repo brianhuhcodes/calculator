@@ -1,3 +1,3 @@
-Calcualtor
+Calculator
 
 calculator with basic functionality
