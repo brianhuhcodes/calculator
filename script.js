@@ -6,29 +6,69 @@ const displayFirst = document.querySelector(".displayFirst")
 const displaySecond = document.querySelector(".displaySecond")
 const tempDisplay = document.querySelector(".tempDisplay")
 const operand = document.querySelector(".operand")
+const back = document.getElementById("back")
+const ce = document.getElementById("ce")
 
 let first = ""
 let oper = ""
+let opered = 0 // if = is entered and trying to use the keypad to start a new calc
 let second = ""
+displayFirst.innerText = '0'
+
+ce.addEventListener('click', function() {
+    displayFirst.innerText = 0
+    displaySecond.innerText = ''
+    tempDisplay.innerText = ''
+    operand.innerText = ''
+    first = ''
+    oper = ''
+    second = ''
+
+})
+
+
+
+
+back.addEventListener('click', function() {
+    if (displayFirst.innerText != "0" && displayFirst.innerText != "") {
+        displayFirst.innerText = displayFirst.innerText.slice(0, displayFirst.innerText.length - 1)
+        first = displayFirst.innerText
+        if (displayFirst.innerText == "") {
+            displayFirst.innerText = "0"
+            first = 0
+        }
+    }
+    else if (displayFirst.innerText == "") {
+        displaySecond.innerText = displaySecond.innerText.slice(0, displaySecond.innerText.length - 1)
+        second = displaySecond.innerText
+        if (displaySecond.innerText == "") {
+            displaySecond.innerText = "0"
+            second = 0
+        }
+    }
+})
 
 
 
 numbers.forEach((number) => {
-     
         number.addEventListener("click", function() {           
-
-
-            
-            if (oper === '') {
+            if (oper == '') {
+                if (opered == 1) {
+                    displayFirst.innerText = "0"
+                    opered = 0
+                }
                 displayFirst.innerText += this.innerText
+                displayFirst.innerText = Number(displayFirst.innerText)
                 first = displayFirst.innerText 
                 calc()
                 console.log("number first OR oper ===''")
             }
     
             else if (oper !== '') {
+
                 displayFirst.innerText = ''
                 displaySecond.innerText += this.innerText
+                displaySecond.innerText =  Number(displaySecond.innerText)
                 second = displaySecond.innerText //make two lines. one for displayFirst and one internal calculation
                 console.log("number second OR oper !== ''")
 
@@ -88,6 +128,7 @@ function operate() {
     operand.innerText = ""
     oper = ""
     second = ''
+    opered = 1
 }
 
 
@@ -103,52 +144,9 @@ function division(a, b) {
     if (b == 0) {
         return ("cannot divide by 0")
     }
-    return parseInt(a)/parseInt(b)
+    return (parseInt(a)/parseInt(b)).toPrecision(3)
 }
 
 function multip(a, b) {
     return parseInt(a)*parseInt(b)
 }
-
-
-
-
-
-
-
-
-// numbers.forEach((number) => {
-//     if (oper === '') {
-//         number.addEventListener("click", function() {
-//         displayFirst.innerText += this.innerText
-//         first = displayFirst.innerText 
-//         calc()
-//         console.log('first')
-//             })}
-    
-//     else if (oper !== '') {
-//         number.addEventListener("click", function() {
-//         displayFirstSecond.innerText += this.innerText
-//         second = displayFirstSecond.innerText //make two lines. one for displayFirst and one internal calculation
-//         console.log("second")
-//         switch(oper) {
-//             case '+':
-//                 addition()
-//                 break;
-//             case '-':
-//                 subtraction()
-//                 break;
-//             case '%':
-//                 division()
-//                 break;
-//             case 'x':
-//                 multip()
-//                 break;
-//         }
-// })}
-
-//     }
-    
-    
-//     )
-    
