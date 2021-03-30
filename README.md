@@ -1,4 +1,4 @@
-Calculator
+# Calculator
 
 calculator with basic functionality
 https://brianhuhcodes.github.io/calculator/
