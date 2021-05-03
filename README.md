@@ -1,5 +1,7 @@
 # Calculator
 
 calculator with basic functionality
-https://brianhuhcodes.github.io/calculator/
-click the link above to run
+The live site can be accessed [here](https://brianhuhcodes.github.io/calculator/) (https://brianhuhcodes.github.io/calculator/)
+
+## Learning goals
+* JS DOM 
